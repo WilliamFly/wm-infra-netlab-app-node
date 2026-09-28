@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    image: netlab-app-node:latest
+    container_name: netlab-app-node
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      PORT: "8080"
+      SERVED_BY: "netlab-app-node-docker"

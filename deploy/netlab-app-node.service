@@ -1,0 +1,15 @@
+[Unit]
+Description=wm-infra-netlab Node app
+After=network.target
+
+[Service]
+Type=simple
+User=netlab-admin
+WorkingDirectory=/home/netlab-admin/wm-infra-netlab-app-node
+EnvironmentFile=/home/netlab-admin/wm-infra-netlab-app-node/.env
+ExecStart=/usr/bin/node src/index.js
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

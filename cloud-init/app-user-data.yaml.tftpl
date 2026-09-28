@@ -1,0 +1,19 @@
+#cloud-config
+hostname: netlab-app-node
+
+users:
+  - name: netlab-admin
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+
+package_update: true
+package_upgrade: false
+
+packages:
+  - git
+  - curl
+  - ca-certificates
+  - gnupg

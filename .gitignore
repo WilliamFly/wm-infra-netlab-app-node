@@ -1,0 +1,22 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+
+# Ansible
+ansible/roles/
+*.retry
+.vault_pass
+
+# Node
+node_modules/
+npm-debug.log*
+dist/
+
+# Secrets
+.env
+
+# OS cruft
+.DS_Store
