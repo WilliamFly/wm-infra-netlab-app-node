@@ -38,7 +38,4 @@ jobs:
 
       - run: npm ci
 
-      - name: Debug — list files
-        run: ls -la && ls -la tests/
-
       - run: npm test
