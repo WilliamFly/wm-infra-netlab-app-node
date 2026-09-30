@@ -86,6 +86,25 @@ curl 10.0.2.21:8080/visits
 `served_by` in the response tells you which method is actually running
 (`netlab-app-node` for VM-native, `netlab-app-node-docker` for Docker).
 
+## Testing & CI
+
+The app is split into `src/app.js` (`createApp()`, `runMigrations()`)
+and a thin `src/index.js` entrypoint, so the Express app can be tested
+without a running process. `tests/integration.test.js` spins up the
+real app in-process on an OS-assigned port using Node's built-in test
+runner and native `fetch` — no extra test dependencies.
+
+```bash
+npm test
+```
+
+Requires a reachable Postgres via `DATABASE_URL`. There's no dedicated
+local test-DB setup for this project — CI is the single gate.
+
+GitHub Actions (`.github/workflows/ci.yml`) runs the same tests on
+every push/PR to `main`, against a throwaway Postgres service
+container.
+
 ## Security / Hardening
 
 - SSH hardened, `ufw` enabled, default-deny incoming
